@@ -91,5 +91,5 @@ def update():
        neptune.x = np.cos((t + angle) / 164) * neptune_orbit_rad
        neptune.z = np.sin((t + angle) / 164) * neptune_orbit_rad
 
-#планетки
+
 app.run()
