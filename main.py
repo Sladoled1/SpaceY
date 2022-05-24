@@ -4,7 +4,8 @@ import numpy as np
 app=Ursina()
 
 window.fullscreen = True
-sky=Entity(model='sphere', scale=10000, texture='stars', double_sided=True)
+#Sky(texture="textures/stars",rotation=(45,45,45))
+sky=Entity(model='sphere', scale=10000, texture='textures/stars', double_sided=True)
 
 sun=Entity(model='sphere', scale=2, texture='textures/sun', double_sided=True)
 
@@ -91,5 +92,13 @@ def update():
        neptune.x = np.cos((t + angle) / 164) * neptune_orbit_rad
        neptune.z = np.sin((t + angle) / 164) * neptune_orbit_rad
 
+       if held_keys["q"]:
+              sun.model="cube"
+              sun.texture="textures/vit"
+              sun.rotation_y+=time.dt * 20
+
+       if held_keys["r"]:
+              sky.model='cube'
+              sky.texture="textures/vet"
 #планетки
 app.run()
