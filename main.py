@@ -77,28 +77,4 @@ def update():
        saturn.x = np.cos((t + angle) / 29.46) * saturn_orbit_rad
        saturn.z = np.sin((t + angle) / 29.46) * saturn_orbit_rad
 
-       ring.x = np.cos((t + angle) / 29.46) * saturn_orbit_rad
-       ring.z = np.sin((t + angle) / 29.46) * saturn_orbit_rad
-
-       #uranus
-       uranus_orbit_rad = 30
-       uranus.rotation_y += time.dt * 20
-       uranus.x = np.cos((t + angle) / 84) * uranus_orbit_rad
-       uranus.z = np.sin((t + angle) / 84) * uranus_orbit_rad
-
-       #neptune
-       neptune_orbit_rad = -35
-       neptune.rotation_y += time.dt * 20
-       neptune.x = np.cos((t + angle) / 164) * neptune_orbit_rad
-       neptune.z = np.sin((t + angle) / 164) * neptune_orbit_rad
-
-       if held_keys["q"]:
-              sun.model="cube"
-              sun.texture="textures/vit"
-              sun.rotation_y+=time.dt * 20
-
-       if held_keys["r"]:
-              sky.model='cube'
-              sky.texture="textures/vet"
-#планетки
 app.run()
