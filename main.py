@@ -101,28 +101,63 @@ def update():
        ring.z = np.sin((t + angle) / 29.46) * saturn_orbit_rad
 
        if held_keys["q"]:
-                     for i in range(360):
-                            t = t + .005
-                            merc_center = Vec3(mercury.x,mercury.y,mercury.z)
-                            mercury.x = np.cos((t + angle) / 0.24) * mercury_orbit_rad
-                            mercury.z = np.sin((t + angle) / 0.24) * mercury_orbit_rad
-                            merc_center2 = Vec3(mercury.x, mercury.y, mercury.z)
-                            points_trajectory_line = (merc_center, merc_center2)
+
+              for i in range(90):
+                     t = t + .05
+                     earth_center = Vec3(earth.x, earth.y, earth.z)
+                     earth.x = np.cos((t + angle)) * earth_orbit_rad
+                     earth.z = np.sin((t + angle)) * earth_orbit_rad
+                     earth_center2 = Vec3(earth.x, earth.y, earth.z)
+                     points_trajectory_line = (earth_center, earth_center2)
+                     connections_trajectory_line = ((0, 1), (1, 0))
+                     trajectory_line2 = Entity(
+                            model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line,
+                                       mode="line",
+                                       thickness=4), color=color.lime)
+       if held_keys["w"]:
+                     for i in range(90):
+                            t = t + .5
+                            jupiter_center = Vec3(jupiter.x, jupiter.y, jupiter.z)
+                            jupiter.x = np.cos((t + angle) / 11.86) * jupiter_orbit_rad
+                            jupiter.z = np.sin((t + angle) / 11.86) * jupiter_orbit_rad
+                            jupiter_center2 = Vec3(jupiter.x, jupiter.y, jupiter.z)
+                            points_trajectory_line = (jupiter_center, jupiter_center2)
                             connections_trajectory_line = ((0, 1), (1, 0))
-                            trajectory_line1 = Entity(
-                                   model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line, mode="line",
-                                              thickness=4), color=color.magenta)
-                            earth_center = Vec3(earth.x, earth.y, earth.z)
-                            earth.x = np.cos((t + angle)  ) * earth_orbit_rad
-                            earth.z = np.sin((t + angle)  ) * earth_orbit_rad
-                            earth_center2 = Vec3(earth.x, earth.y, earth.z)
-                            points_trajectory_line = (earth_center, earth_center2)
+                            trajectory_line2 = Entity(
+                                          model=Mesh(vertices=points_trajectory_line,
+                                                     triangles=connections_trajectory_line,
+                                                     mode="line",
+                                                     thickness=4), color=color.lime)
+
+       if held_keys["e"]:
+                     for i in range(40):
+                            t = t + .5
+                            mars_center = Vec3(mars.x, mars.y, mars.z)
+                            mars.x = np.cos((t + angle) / 1.88) * mars_orbit_rad
+                            mars.z = np.sin((t + angle) / 1.88) * mars_orbit_rad
+                            mars_center2 = Vec3(mars.x, mars.y, mars.z)
+                            points_trajectory_line = (mars_center, mars_center2)
                             connections_trajectory_line = ((0, 1), (1, 0))
                             trajectory_line2 = Entity(
                                    model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line,
                                               mode="line",
                                               thickness=4), color=color.lime)
-                            for i in range(1):
+
+       if held_keys["r"]:
+                            for i in range(40):
+                                   t = t + .05
+                                   merc_center = Vec3(mercury.x,mercury.y,mercury.z)
+                                   mercury.x = np.cos((t + angle) / 0.24) * mercury_orbit_rad
+                                   mercury.z = np.sin((t + angle) / 0.24) * mercury_orbit_rad
+                                   merc_center2 = Vec3(mercury.x, mercury.y, mercury.z)
+                                   points_trajectory_line = (merc_center, merc_center2)
+                                   connections_trajectory_line = ((0, 1), (1, 0))
+                                   trajectory_line1 = Entity(
+                                          model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line, mode="line",
+                                                     thickness=4), color=color.magenta)
+
+       if held_keys["t"]:
+                            for i in range(80):
                                    t = t + .05
                                    venus_center = Vec3(venus.x,venus.y,venus.z)
                                    venus.x = np.cos((t + angle) / 0.62) * venus_orbit_rad
@@ -133,5 +168,32 @@ def update():
                                    trajectory_line3 = Entity(
                                           model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line, mode="line",
                                                      thickness=4), color=color.magenta)
+
+       if held_keys["y"]:
+              for i in range(80):
+                     t = t + 5
+                     uranus_center = Vec3(uranus.x, uranus.y, uranus.z)
+                     uranus.x = np.cos((t + angle) / 84) * uranus_orbit_rad
+                     uranus.z = np.sin((t + angle) / 84) * uranus_orbit_rad
+                     uranus_center2 = Vec3(uranus.x, uranus.y, uranus.z)
+                     points_trajectory_line = (uranus_center, uranus_center2)
+                     connections_trajectory_line = ((0, 1), (1, 0))
+                     trajectory_line2 = Entity(
+                            model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line,
+                                       mode="line",
+                                       thickness=4), color=color.lime)
+       if held_keys["u"]:
+              for i in range(40):
+                     t = t + 50
+                     neptune_center = Vec3(neptune.x, neptune.y, neptune.z)
+                     neptune.x = np.cos((t + angle) / 164) * neptune_orbit_rad
+                     neptune.z = np.sin((t + angle) / 164) * neptune_orbit_rad
+                     neptune_center2 = Vec3(neptune.x, neptune.y, neptune.z)
+                     points_trajectory_line = (neptune_center, neptune_center2)
+                     connections_trajectory_line = ((0, 1), (1, 0))
+                     trajectory_line2 = Entity(
+                            model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line,
+                                       mode="line",
+                                       thickness=4), color=color.lime)
 
 app.run()
