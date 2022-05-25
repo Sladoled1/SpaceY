@@ -212,4 +212,10 @@ def update():
        if held_keys["z"]:
               sun.texture="textures/sun2"
               sun.scale = 16
+
+       if held_keys["b"]:
+              print(1)
+              object = Entity(model='Models/2.obj', position=(30, 30, 30), scale=(1), texture='models/texture.jpg', double_sided=True)
+
+
 app.run()
