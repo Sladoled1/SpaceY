@@ -102,7 +102,7 @@ def update():
 
        if held_keys["q"]:
 
-              for i in range(90):
+              for i in range(150):
                      t = t + .05
                      earth_center = Vec3(earth.x, earth.y, earth.z)
                      earth.x = np.cos((t + angle)) * earth_orbit_rad
@@ -115,7 +115,7 @@ def update():
                                        mode="line",
                                        thickness=4), color=color.lime)
        if held_keys["w"]:
-                     for i in range(90):
+                     for i in range(150):
                             t = t + .5
                             jupiter_center = Vec3(jupiter.x, jupiter.y, jupiter.z)
                             jupiter.x = np.cos((t + angle) / 11.86) * jupiter_orbit_rad
@@ -190,6 +190,20 @@ def update():
                      neptune.z = np.sin((t + angle) / 164) * neptune_orbit_rad
                      neptune_center2 = Vec3(neptune.x, neptune.y, neptune.z)
                      points_trajectory_line = (neptune_center, neptune_center2)
+                     connections_trajectory_line = ((0, 1), (1, 0))
+                     trajectory_line2 = Entity(
+                            model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line,
+                                       mode="line",
+                                       thickness=4), color=color.lime)
+
+       if held_keys["i"]:
+              for i in range(90):
+                     t = t + 5
+                     saturn_center = Vec3(saturn.x, saturn.y, saturn.z)
+                     saturn.x = np.cos((t + angle) / 29.46) * saturn_orbit_rad
+                     saturn.z = np.sin((t + angle) / 29.46) * saturn_orbit_rad
+                     saturn_center2 = Vec3(saturn.x, saturn.y, saturn.z)
+                     points_trajectory_line = (saturn_center, saturn_center2)
                      connections_trajectory_line = ((0, 1), (1, 0))
                      trajectory_line2 = Entity(
                             model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line,
