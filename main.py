@@ -29,13 +29,19 @@ uranus=Entity(model='sphere',position=(30,0,0), scale=0.7, texture='textures/ura
 neptune=Entity(model='sphere',position=(-35,0,0), scale=0.7, texture='textures/neptune', double_sided=True)
 EditorCamera()
 t=np.pi
+trajectory_line4 = Entity()
 
 def update():
        global  t
+
+
+       dt,x,y,z=0,0,0,0
+
        t=t+.005
        angle=np.pi*40/180
 
        #mercury
+
        mercury_orbit_rad = 3
        mercury.rotation_y += time.dt * 20
        mercury.x = np.cos((t+angle)/0.24) * mercury_orbit_rad
@@ -49,9 +55,11 @@ def update():
 
        # earth
        earth_orbit_rad = 9
+
+
        earth.rotation_y += time.dt * 20
        earth.x = np.cos(t + angle) * earth_orbit_rad
-       earth.z = np.sin(t + angle) * earth_orbit_rad
+       earth.z = np.sin((t + angle)) * earth_orbit_rad
 
        # moon
        moon_orbit_rad = 1.5
@@ -70,8 +78,21 @@ def update():
        jupiter.x = np.cos((t + angle) / 11.86) * jupiter_orbit_rad
        jupiter.z = np.sin((t + angle) / 11.86) * jupiter_orbit_rad
 
+       # uranus
+       uranus_orbit_rad = 30
+       uranus.rotation_y += time.dt * 20
+       uranus.x = np.cos((t + angle) / 84) * uranus_orbit_rad
+       uranus.z = np.sin((t + angle) / 84) * uranus_orbit_rad
 
-       #saturn
+       # neptune
+       neptune_orbit_rad = -35
+       neptune.rotation_y += time.dt * 20
+       neptune.x = np.cos((t + angle) / 164) * neptune_orbit_rad
+       neptune.z = np.sin((t + angle) / 164) * neptune_orbit_rad
+
+
+
+       # saturn
        saturn_orbit_rad = 24
        saturn.rotation_y += time.dt * 20
        saturn.x = np.cos((t + angle) / 29.46) * saturn_orbit_rad
@@ -79,15 +100,38 @@ def update():
        ring.x = np.cos((t + angle) / 29.46) * saturn_orbit_rad
        ring.z = np.sin((t + angle) / 29.46) * saturn_orbit_rad
 
-       #uranus
-       uranus_orbit_rad = 30
-       uranus.rotation_y += time.dt * 20
-       uranus.x = np.cos((t + angle) / 84) * uranus_orbit_rad
-       uranus.z = np.sin((t + angle) / 84) * uranus_orbit_rad
+       if held_keys["q"]:
+                     for i in range(360):
+                            t = t + .005
+                            merc_center = Vec3(mercury.x,mercury.y,mercury.z)
+                            mercury.x = np.cos((t + angle) / 0.24) * mercury_orbit_rad
+                            mercury.z = np.sin((t + angle) / 0.24) * mercury_orbit_rad
+                            merc_center2 = Vec3(mercury.x, mercury.y, mercury.z)
+                            points_trajectory_line = (merc_center, merc_center2)
+                            connections_trajectory_line = ((0, 1), (1, 0))
+                            trajectory_line1 = Entity(
+                                   model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line, mode="line",
+                                              thickness=4), color=color.magenta)
+                            earth_center = Vec3(earth.x, earth.y, earth.z)
+                            earth.x = np.cos((t + angle)  ) * earth_orbit_rad
+                            earth.z = np.sin((t + angle)  ) * earth_orbit_rad
+                            earth_center2 = Vec3(earth.x, earth.y, earth.z)
+                            points_trajectory_line = (earth_center, earth_center2)
+                            connections_trajectory_line = ((0, 1), (1, 0))
+                            trajectory_line2 = Entity(
+                                   model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line,
+                                              mode="line",
+                                              thickness=4), color=color.lime)
+                            for i in range(1):
+                                   t = t + .05
+                                   venus_center = Vec3(venus.x,venus.y,venus.z)
+                                   venus.x = np.cos((t + angle) / 0.62) * venus_orbit_rad
+                                   venus.z = np.sin((t + angle) / 0.62) * venus_orbit_rad
+                                   venus_center2 = Vec3(venus.x, venus.y, venus.z)
+                                   points_trajectory_line = (venus_center, venus_center2)
+                                   connections_trajectory_line = ((0, 1), (1, 0))
+                                   trajectory_line3 = Entity(
+                                          model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line, mode="line",
+                                                     thickness=4), color=color.magenta)
 
-       #neptune
-       neptune_orbit_rad = -35
-       neptune.rotation_y += time.dt * 20
-       neptune.x = np.cos((t + angle) / 164) * neptune_orbit_rad
-       neptune.z = np.sin((t + angle) / 164) * neptune_orbit_rad
 app.run()
