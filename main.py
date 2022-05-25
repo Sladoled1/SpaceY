@@ -209,5 +209,7 @@ def update():
                             model=Mesh(vertices=points_trajectory_line, triangles=connections_trajectory_line,
                                        mode="line",
                                        thickness=4), color=color.lime)
-
+       if held_keys["z"]:
+              sun.texture="textures/sun2"
+              sun.scale = 16
 app.run()
